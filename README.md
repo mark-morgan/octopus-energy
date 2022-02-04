@@ -13,7 +13,7 @@ composer require markmorgan/octopus-energy
 
 ## Usage
 ### Initialisation
-Before requesting data you will need to set your access credentials. This is done by initialising the LivnClient:
+Before requesting data you will need to set your access credentials. This is done by initialising the OctopusEnergy Client:
 ```php
 $apiKey = 'my-octopus-apiky';
 
