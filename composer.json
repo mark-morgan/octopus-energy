@@ -1,0 +1,31 @@
+{
+  "name": "markmorgan/octopus-energy",
+  "description": "District5 Octopus Energy",
+  "keywords": ["php", "district5", "octopus energy"],
+  "homepage": "https://github.com/mark-morgan/php-octopusenergy",
+  "license": "mit",
+  "authors": [
+    {
+      "name": "Mark Morgan"
+    },
+    {
+      "name": "District5 Ltd",
+      "email": "hello@district5.co.uk"
+    }
+  ],
+  "repositories": [
+  ],
+  "require": {
+    "php": ">=7.1",
+    "guzzlehttp/guzzle": "^6.5"
+  },
+  "require-dev": {
+    "phpunit/phpunit": ">=7"
+  },
+  "autoload": {
+    "psr-4": { "OctopusEnergy\\": "src/OctopusEnergy/" }
+  },
+  "autoload-dev": {
+    "psr-4": { "TestsOctopusEnergy\\": "tests/TestsOctopusEnergy/" }
+  }
+}
