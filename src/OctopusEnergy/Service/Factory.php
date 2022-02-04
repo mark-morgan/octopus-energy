@@ -8,7 +8,8 @@ class Factory
      * @var array<string, string>
      */
     private static $classMap = [
-        'products' => ProductService::class
+        'products' => ProductService::class,
+        'industry' => IndustryService::class
     ];
 
     /** @var \OctopusEnergy\Client */

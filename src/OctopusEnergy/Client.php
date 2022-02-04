@@ -6,11 +6,13 @@ use OctopusEnergy\API\APIObject;
 use OctopusEnergy\API\Requestor;
 use OctopusEnergy\API\Response;
 use OctopusEnergy\Exception\UnexpectedValueException;
+use OctopusEnergy\Service\IndustryService;
 use OctopusEnergy\Service\ProductService;
 use OctopusEnergy\Util\Util;
 
 /**
  * @property ProductService $products
+ * @property IndustryService $industry
  */
 class Client
 {
