@@ -8,6 +8,7 @@ class Factory
      * @var array<string, string>
      */
     private static $classMap = [
+        'meters' => MeterService::class,
         'products' => ProductService::class,
         'industry' => IndustryService::class
     ];

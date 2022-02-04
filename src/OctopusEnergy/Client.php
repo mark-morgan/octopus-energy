@@ -7,10 +7,12 @@ use OctopusEnergy\API\Requestor;
 use OctopusEnergy\API\Response;
 use OctopusEnergy\Exception\UnexpectedValueException;
 use OctopusEnergy\Service\IndustryService;
+use OctopusEnergy\Service\MeterService;
 use OctopusEnergy\Service\ProductService;
 use OctopusEnergy\Util\Util;
 
 /**
+ * @property MeterService $meters
  * @property ProductService $products
  * @property IndustryService $industry
  */
