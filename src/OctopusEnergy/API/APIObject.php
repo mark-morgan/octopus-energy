@@ -68,18 +68,19 @@ class APIObject
     public function populateFromValues(array $values)
     {
         foreach ($values as $key => $value) {
-
-            if (array_key_exists($key, $this->nestedMap)) {
+            // format the key in a more php friendly format
+            $formattedKey = static::toLowerCamelCase($key);
+            if (array_key_exists($formattedKey, $this->nestedMap)) {
                 // this is a nested property, need a nested object to utilise this
-                $this->values[$key] = \OctopusEnergy\Util\Util::convertToClass($value, ['type' => $this->nestedMap[$key]], false);
+                $this->values[$formattedKey] = \OctopusEnergy\Util\Util::convertToClass($value, ['type' => $this->nestedMap[$formattedKey]], false);
             } else {
                 // just a normal property
-                if (array_key_exists($key, $this->formatMap)) {
+                if (array_key_exists($formattedKey, $this->formatMap)) {
                     // formatting required
-                    $this->values[$key] = $this::getFormatter($this->formatMap[$key])->format($value);
+                    $this->values[$formattedKey] = $this::getFormatter($this->formatMap[$formattedKey])->format($value);
                 } else {
                     // no formatting required
-                    $this->values[$key] = $value;
+                    $this->values[$formattedKey] = $value;
                 }
             }
         }
@@ -88,6 +89,16 @@ class APIObject
     public function overrideValues(array $values): void
     {
         $this->values = $values;
+    }
+
+    protected static function toLowerCamelCase(string $str): string
+    {
+        return str_replace('_', '', lcfirst(ucwords($str, '_')));
+    }
+
+    protected static function fromLowerCamelCase(string $str): string
+    {
+        return strtolower(implode('_', preg_split('/(?=[A-Z])/', $str)));
     }
 
     protected static function getFormatter(string $formatterClass): FormatInterface
