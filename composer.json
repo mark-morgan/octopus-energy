@@ -1,8 +1,8 @@
 {
   "name": "markmorgan/octopus-energy",
-  "description": "District5 Octopus Energy",
-  "keywords": ["php", "district5", "octopus energy"],
-  "homepage": "https://github.com/mark-morgan/php-octopusenergy",
+  "description": "Octopus Energy PHP SDK",
+  "keywords": ["php", "octopus energy"],
+  "homepage": "https://github.com/mark-morgan/octopus-energy",
   "license": "mit",
   "authors": [
     {
