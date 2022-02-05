@@ -7,7 +7,9 @@ use OctopusEnergy\GridSupplyPoints;
 class IndustryService extends AbstractService
 {
     /**
-     * @param string|null $postcode
+     * Gets the grid supply points, narrowed down to a postcode region if specified.
+     *
+     * @param string|null $postcode The postcode to narrow the search down to.
      *
      * @return GridSupplyPoints
      */
