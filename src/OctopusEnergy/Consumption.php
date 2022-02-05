@@ -3,6 +3,7 @@
 namespace OctopusEnergy;
 
 use OctopusEnergy\API\APIObject;
+use OctopusEnergy\Format\DateTimeFormatter;
 use OctopusEnergy\Format\FloatToStringFormatter;
 
 /**
@@ -16,6 +17,8 @@ use OctopusEnergy\Format\FloatToStringFormatter;
 class Consumption extends APIObject
 {
     protected $formatMap = [
-        'consumption' => FloatToStringFormatter::class
+        'consumption' => FloatToStringFormatter::class,
+        'intervalStart' => DateTimeFormatter::class,
+        'intervalEnd' => DateTimeFormatter::class
     ];
 }
