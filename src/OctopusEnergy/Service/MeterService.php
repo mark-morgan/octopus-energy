@@ -5,16 +5,17 @@ namespace OctopusEnergy\Service;
 use OctopusEnergy\Consumption;
 use OctopusEnergy\ElectricityMeter;
 use OctopusEnergy\Exception\InvalidArgumentException;
-use OctopusEnergy\GridSupplyPoints;
 use OctopusEnergy\Search;
 use OctopusEnergy\Util\Util;
 
 class MeterService extends AbstractService
 {
     /**
-     * @param string|null $postcode
+     * Gets the electricity meter with given MPAN number.
      *
-     * @return GridSupplyPoints
+     * @param string $mpan Meter MPAN number.
+     *
+     * @return ElectricityMeter
      */
     public function getElectricityMeter(string $mpan): ElectricityMeter
     {
@@ -28,6 +29,23 @@ class MeterService extends AbstractService
         );
     }
 
+    /**
+     * Gets the consumption for an electricity meter.
+     *
+     * NOTE:
+     *
+     * @param string $mpan Meter MPAN number.
+     * @param string $serialNumber Meter serial number.
+     * @param int $page The page of the results. When using a page > 1, ensure that you have checked the result count from page 1
+     * to not request a page that would take you past the last result.
+     * @param \DateTime|null $periodFrom The lower end of the search range, inclusive.
+     * @param \DateTime|null $periodTo The upper end of the search range, exclusive.
+     * @param int $pageSize Defaults to 100, max 25000.
+     *
+     * @return Search
+     *
+     * @throws InvalidArgumentException
+     */
     public function getElectricityMeterConsumption(
         string $mpan,
         string $serialNumber,
