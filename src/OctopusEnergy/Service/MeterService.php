@@ -2,8 +2,10 @@
 
 namespace OctopusEnergy\Service;
 
+use OctopusEnergy\Consumption;
 use OctopusEnergy\ElectricityMeter;
 use OctopusEnergy\GridSupplyPoints;
+use OctopusEnergy\Search;
 
 class MeterService extends AbstractService
 {
@@ -12,7 +14,7 @@ class MeterService extends AbstractService
      *
      * @return GridSupplyPoints
      */
-    public function getElectricityMeter(string $mpan): GridSupplyPoints
+    public function getElectricityMeter(string $mpan): ElectricityMeter
     {
         return $this->request(
             'get',
@@ -22,5 +24,23 @@ class MeterService extends AbstractService
                 'type' => ElectricityMeter::class
             ]
         );
+    }
+
+    public function getElectricityMeterConsumption(string $mpan, string $serialNumber)
+    {
+        $val = $this->request(
+            'get',
+            '/v1/electricity-meter-points/' . $mpan . '/meters/' . $serialNumber . '/consumption/',
+            [],
+            [
+                'type' => Search::class,
+                'nestedMap' => [
+                    'results' => Consumption::class
+                ]
+            ]
+        );
+
+        $done = true;
+        return $val;
     }
 }
