@@ -98,6 +98,11 @@ class Util
         return $classes;
     }
 
+    public static function convertToAPIDateTime(\DateTime $dateTime): string
+    {
+        return str_replace(' ', 'T', $dateTime->format('Y-m-d H:i:sP'));
+    }
+
     /**
      * Generates a pseudo-unique UUID formatted string.
      *
