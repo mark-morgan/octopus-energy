@@ -37,12 +37,14 @@ class Client
     /** @var \OctopusEnergy\Service\Factory */
     private $factory;
 
-    public function __construct(array $config = [])
+    public function __construct(string $apiKey, array $config = [])
     {
         $config = array_merge(static::DEFAULT_CONFIG, $config);
+
+        $this->validateApiKey($apiKey);
         $this->validateConfig($config);
 
-        $config['authorization'] = 'Basic ' . base64_encode($config['api_key'] . ':');
+        $config['authorization'] = 'Basic ' . base64_encode($apiKey . ':');
 
         $this->config = $config;
     }
@@ -131,19 +133,26 @@ class Client
     }
 
     /**
+     * Validates the api key.
+     *
+     * @param string $apiKey
+     *
+     * @throws \OctopusEnergy\Exception\InvalidArgumentException
+     */
+    protected function validateApiKey(string $apiKey): void
+    {
+        // TODO: validate the api key here
+    }
+
+    /**
      * Validates the config required for the client to work.
      *
      * @param array<string, mixed> $config
      *
      * @throws \OctopusEnergy\Exception\InvalidArgumentException
      */
-    private function validateConfig(array $config): void
+    protected function validateConfig(array $config): void
     {
-        // api key
-        if (null === $config['api_key']) {
-            throw new \OctopusEnergy\Exception\InvalidArgumentException('api_key must be set');
-        }
-
-        // TODO: validate api key
+        // validate any other custom config here
     }
 }
