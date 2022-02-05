@@ -66,10 +66,12 @@ class Util
         }
 
         $type = $opts['type'];
-        $client = array_key_exists('client', $opts) ? $opts['client'] : null;
+        unset($opts['type']);
+
+//        $client = array_key_exists('client', $opts) ? $opts['client'] : null;
 
         /** @var APIObject $obj */
-        $obj = new $type($client);
+        $obj = new $type($opts);
 
         $obj->populateFromValues($apiResponseBodyJSON);
 

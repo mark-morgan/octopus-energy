@@ -22,8 +22,11 @@ class APIObject
     protected static $initialisedFormatters = [];
 
 //    public function __construct(Client $client = null)
-    public function __construct()
+    public function __construct(array $opts = [])
     {
+        if (isset($opts['nestedMap'])) {
+            $this->nestedMap = $opts['nestedMap'];
+        }
 //        $this->client = $client;
     }
 
