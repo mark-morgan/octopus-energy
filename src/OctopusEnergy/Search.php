@@ -13,9 +13,5 @@ use OctopusEnergy\API\APIObject;
  * @property ?string $previous
  * @property array $results
  */
-class ProductSearch extends APIObject
-{
-    protected $nestedMap = [
-        'results' => Product::class
-    ];
-}
+class Search extends APIObject
+{ }

@@ -3,23 +3,26 @@
 namespace OctopusEnergy\Service;
 
 use OctopusEnergy\Product;
-use OctopusEnergy\ProductSearch;
+use OctopusEnergy\Search;
 
 class ProductService extends AbstractService
 {
     /**
      * Gets all Products as a ProductSearch object.
      *
-     * @return ProductSearch
+     * @return Search
      */
-    public function all(): ProductSearch
+    public function all(): Search
     {
         return $this->request(
             'get',
             '/v1/products/',
             [],
             [
-                'type' => ProductSearch::class
+                'type' => Search::class,
+                'nestedMap' => [
+                    'results' => Product::class
+                ]
             ]
         );
     }
