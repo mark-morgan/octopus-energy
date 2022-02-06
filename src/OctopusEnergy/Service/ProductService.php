@@ -2,6 +2,8 @@
 
 namespace OctopusEnergy\Service;
 
+use OctopusEnergy\Charge;
+use OctopusEnergy\Exception\InvalidArgumentException;
 use OctopusEnergy\Product;
 use OctopusEnergy\Search;
 use OctopusEnergy\Util\Util;
@@ -76,6 +78,25 @@ class ProductService extends AbstractService
             [],
             [
                 'type' => Product::class
+            ]
+        );
+    }
+
+    public function getStandingCharges(string $productCode, string $tariffCode, \DateTime $periodFrom = null, \DateTime $periodTo = null, int $pageSize = 100): Search
+    {
+        if ($pageSize > 1500) {
+            throw new InvalidArgumentException('pageSize cannot be greater than 1,500');
+        }
+
+        return $this->request(
+            'get',
+            '/v1/products/' . $productCode . '/electricity-tariffs/' . $tariffCode . '/standing-charges',
+            [],
+            [
+                'type' => Search::class,
+                'nestedMap' => [
+                    'results' => Charge::class
+                ]
             ]
         );
     }
