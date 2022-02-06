@@ -28,6 +28,8 @@ use OctopusEnergy\API\APIObject;
  * @property ?Tariffs $singleRegisterElectricityTariffs
  * @property ?Tariffs $dualRegisterElectricityTariffs
  * @property ?Tariffs $singleRegisterGasTariffs
+ * @property ?SampleQuotes $sampleQuotes
+ * @property ?SampleConsumptions $sampleConsumption
  */
 class Product extends APIObject
 {
@@ -41,5 +43,7 @@ class Product extends APIObject
         'singleRegisterElectricityTariffs' => Tariffs::class,
         'dualRegisterElectricityTariffs' => Tariffs::class,
         'singleRegisterGasTariffs' => Tariffs::class,
+        'sampleQuotes' => SampleQuotes::class,
+        'sampleConsumption' => SampleConsumptions::class
     ];
 }
