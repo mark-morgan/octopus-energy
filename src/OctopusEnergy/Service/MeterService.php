@@ -32,8 +32,6 @@ class MeterService extends AbstractService
     /**
      * Gets the consumption for an electricity meter.
      *
-     * NOTE:
-     *
      * @param string $mpan Meter MPAN number.
      * @param string $serialNumber Meter serial number.
      * @param int $page The page of the results. When using a page > 1, ensure that you have checked the result count from page 1
@@ -56,7 +54,7 @@ class MeterService extends AbstractService
     ): Search
     {
         if ($pageSize > 25000) {
-            throw new InvalidArgumentException('$pageSize cannot be greater than 25,000');
+            throw new InvalidArgumentException('pageSize cannot be greater than 25,000');
         }
 
         $params = [
