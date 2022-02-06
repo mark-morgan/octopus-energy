@@ -72,10 +72,10 @@ class APIObject
     {
         foreach ($values as $key => $value) {
             // format the key in a more php friendly format
-            $formattedKey = static::toLowerCamelCase($key);
-            if (array_key_exists($formattedKey, $this->nestedMap)) {
+            $formattedKey = strpos($key, '_') === 0 ? $key : static::toLowerCamelCase($key);    // Grid supply points start with an _, don't format them
+            if ($this->isInNestedMap($formattedKey)) {
                 // this is a nested property, need a nested object to utilise this
-                $this->values[$formattedKey] = \OctopusEnergy\Util\Util::convertToClass($value, ['type' => $this->nestedMap[$formattedKey]], false);
+                $this->values[$formattedKey] = \OctopusEnergy\Util\Util::convertToClass($value, ['type' => $this->getNestedMapClass($formattedKey)], false);
             } else {
                 // just a normal property
                 if (array_key_exists($formattedKey, $this->formatMap)) {
@@ -89,19 +89,29 @@ class APIObject
         }
     }
 
+    protected function getNestedMapClass(string $key): string
+    {
+        return $this->nestedMap[$key];
+    }
+
+    protected function isInNestedMap(string $key): bool
+    {
+        return array_key_exists($key, $this->nestedMap);
+    }
+
     public function overrideValues(array $values): void
     {
         $this->values = $values;
     }
 
-    protected static function toLowerCamelCase(string $str): string
-    {
-        return str_replace('_', '', lcfirst(ucwords($str, '_')));
-    }
-
     protected static function fromLowerCamelCase(string $str): string
     {
         return strtolower(implode('_', preg_split('/(?=[A-Z])/', $str)));
+    }
+
+    protected static function toLowerCamelCase(string $str): string
+    {
+        return str_replace('_', '', lcfirst(ucwords($str, '_')));
     }
 
     protected static function getFormatter(string $formatterClass): FormatInterface
