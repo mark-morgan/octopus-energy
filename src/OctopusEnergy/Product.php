@@ -24,6 +24,10 @@ use OctopusEnergy\API\APIObject;
  * @property ?\DateTime $availableTo
  * @property array $links
  * @property string $brand
+ * @property ?int $term
+ * @property ?Tariffs $singleRegisterElectricityTariffs
+ * @property ?Tariffs $dualRegisterElectricityTariffs
+ * @property ?Tariffs $singleRegisterGasTariffs
  */
 class Product extends APIObject
 {
@@ -33,6 +37,9 @@ class Product extends APIObject
     ];
 
     protected $nestedMap = [
-        'links' => Link::class
+        'links' => Link::class,
+        'singleRegisterElectricityTariffs' => Tariffs::class,
+        'dualRegisterElectricityTariffs' => Tariffs::class,
+        'singleRegisterGasTariffs' => Tariffs::class,
     ];
 }
