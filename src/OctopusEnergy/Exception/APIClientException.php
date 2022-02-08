@@ -2,5 +2,7 @@
 
 namespace OctopusEnergy\Exception;
 
-class APIClientException extends \Exception
+use GuzzleHttp\Exception\ClientException;
+
+class APIClientException extends ClientException
 { }
