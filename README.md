@@ -83,3 +83,7 @@ $gspSearch = $client->industry->getGridSupplyPoints();
 $postcode = 'cf104uw';
 $gspSearch = $client->industry->getGridSupplyPoints($postcode);
 ```
+
+
+## Testing
+You can run PHPUnit against the library by running composer install and then running phpunit. Before doing so, you'll need to copy the example.phpunit.xml to phpunit.xml and change the environment variables for your API and meter details.
