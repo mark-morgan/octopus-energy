@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/7.5/phpunit.xsd"
+        bootstrap="vendor/autoload.php"
+        executionOrder="depends,defects"
+        forceCoversAnnotation="false"
+        beStrictAboutCoversAnnotation="false"
+        beStrictAboutOutputDuringTests="false"
+        beStrictAboutTodoAnnotatedTests="false"
+        verbose="true"
+        colors="true"
+>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory>src</directory>
+        </whitelist>
+    </filter>
+
+    <php>
+        <env name="OCTOPUS_API_KEY" value="YOUR_OCTOPUS_API_KEY" force="true" />
+        <env name="OCTOPUS_METER_MPAN" value="YOUR_OCTOPUS_METER_MPAN" force="true" />
+        <env name="OCTOPUS_METER_SERIAL" value="YOUR_OCTOPUS_METER_SERIAL" force="true" />
+    </php>
+
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>tests/</directory>
+        </testsuite>
+    </testsuites>
+
+</phpunit>
