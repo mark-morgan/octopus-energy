@@ -67,7 +67,6 @@ class Requestor
             if (json_last_error() === JSON_ERROR_NONE && isset($errorJson['message'])) {
                 $message = $errorJson['message'];
             }
-            error_log($message);
             throw new APIClientException($message, $e->getRequest(), $e->getResponse(), $e, $e->getHandlerContext());
 
         } catch (\GuzzleHttp\Exception\ServerException $e) {
@@ -77,7 +76,6 @@ class Requestor
             if (json_last_error() === JSON_ERROR_NONE && isset($errorJson['message'])) {
                 $message = $errorJson['message'];
             }
-            error_log($message);
             return [];
         }
     }
