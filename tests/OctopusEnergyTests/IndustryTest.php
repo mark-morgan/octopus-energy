@@ -4,7 +4,7 @@ namespace OctopusEnergyTests;
 
 use OctopusEnergy\GridSupplyPoint;
 
-class IndustryTests extends BaseTest
+class IndustryTest extends BaseTest
 {
 
     public function testGetAllGridSupplyPoints()
